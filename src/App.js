@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import Tabel from "./tabel";
 import "./App.css";
 
 class App extends Component {
@@ -11,19 +12,24 @@ class App extends Component {
         { nume: "Popa", prenume: "Cristian", tel: "0761980654", id: 3 },
       ],
     };
+
+    // This binding is necessary to make `this` work in the callback
     this.stergeContact = this.stergeContact.bind(this);
   }
+
   stergeContact(ev) {
-    const idSup = parseInt(ev.target.id); //  id e convertit in intreg
+    const idSup = parseInt(ev.target.id);
     const { contacte } = this.state;
     const sirNou = contacte.filter((item) => {
       return item.id !== idSup;
       //  Obiectul care are id === idSup nu se copiaza in noul sir
     });
+
     this.setState({
       contacte: sirNou,
     });
   }
+
   render() {
     return (
       <div className="container">
@@ -35,4 +41,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
